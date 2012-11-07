@@ -3,6 +3,8 @@
 
 @implementation GTRootViewController
 
+  GTScreen3ViewController *screen3ViewController;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
@@ -39,8 +41,16 @@
 }
 
 - (void)pushButton3:(UIButton *)button {
-  GTScreen3ViewController *screen3ViewController = [[GTScreen3ViewController alloc] init];
-  [self.navigationController pushViewController:screen3ViewController animated:YES];
+  UIAlertView *alert = [[UIAlertView alloc] init];
+  alert.delegate = self;
+  alert.title = @"確認";
+  alert.message = @"実行してもよろしいですか？";
+  [alert addButtonWithTitle:@"いいえ"];
+  [alert addButtonWithTitle:@"はい"];
+  [alert show];
+  
+//  GTScreen3ViewController *screen3ViewController = [[GTScreen3ViewController alloc] init];
+//  [self.navigationController pushViewController:screen3ViewController animated:YES];
 }
 
 -(void)downChangeBgColor:(UIButton *)button{
@@ -49,5 +59,16 @@
 -(void)upChangeBgColor:(UIButton *)button{
   self.view.backgroundColor = [UIColor yellowColor];
 }
-
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+  
+  switch (buttonIndex) {
+    case 0:
+      break;
+    case 1:
+      screen3ViewController = [[GTScreen3ViewController alloc] init];
+      [self.navigationController pushViewController:screen3ViewController animated:YES];
+      break;
+  }
+}
 @end
