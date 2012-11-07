@@ -1,4 +1,5 @@
 #import "GTRootViewController.h"
+#import "GTScreen3ViewController.h"
 
 @implementation GTRootViewController
 
@@ -13,12 +14,12 @@
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor yellowColor];
   
-  UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(100,100, 300,300)];
+  UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 50, 300, 100)];
   label.text = @"TB001";
   [self.view addSubview:label];
   
   UIButton *changeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  changeButton.frame = CGRectMake(0, self.view.frame.size.height-120, self.view.frame.size.width/2, 44);
+  changeButton.frame = CGRectMake((320-220)/2, 270, 220, 40);
 
   [changeButton setTitle:@"change bg-color" forState:UIControlStateNormal];
   [changeButton addTarget:self action:@selector(downChangeBgColor:) forControlEvents:UIControlEventTouchDown];
@@ -26,7 +27,21 @@
   [self.view addSubview:changeButton];
 
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
+  // 画面３への遷移ボタン
+  UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  button3.frame = CGRectMake((320-220)/2, 370, 220, 40);
+  [button3 setTitle:@"画面３へ遷移" forState:UIControlStateNormal];
+  [button3 addTarget:self action:@selector(pushButton3:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:button3];
+  
 }
+
+- (void)pushButton3:(UIButton *)button {
+  GTScreen3ViewController *screen3ViewController = [[GTScreen3ViewController alloc] init];
+  [self.navigationController pushViewController:screen3ViewController animated:YES];
+}
+
 -(void)downChangeBgColor:(UIButton *)button{
   self.view.backgroundColor = [UIColor redColor];
 }
