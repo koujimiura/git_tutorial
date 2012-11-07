@@ -34,7 +34,8 @@
   [button3 setTitle:@"画面３へ遷移" forState:UIControlStateNormal];
   [button3 addTarget:self action:@selector(pushButton3:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:button3];
-  
+
+
 }
 
 - (void)pushButton3:(UIButton *)button {
